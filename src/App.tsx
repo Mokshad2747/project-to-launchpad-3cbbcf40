@@ -23,12 +23,14 @@ const queryClient = new QueryClient();
 const App = () => {
   const [projectInput, setProjectInput] = useState<ProjectInput | null>(null);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
-  const [startup, setStartup] = useState<StartupResult | null>(null);
+  const [startups, setStartups] = useState<StartupResult[]>([]);
+  const [selectedStartup, setSelectedStartup] = useState<StartupResult | null>(null);
 
   const handleAnalysis = (input: ProjectInput, result: AnalysisResult) => {
     setProjectInput(input);
     setAnalysis(result);
-    setStartup(null); // Reset downstream state
+    setStartups([]); // Reset downstream state
+    setSelectedStartup(null);
   };
 
   return (
@@ -49,12 +51,14 @@ const App = () => {
                   element={
                     <StartupGenerator
                       projectInput={projectInput}
-                      startup={startup}
-                      onStartupGenerated={setStartup}
+                      startups={startups}
+                      onStartupsGenerated={setStartups}
+                      onSelectStartup={setSelectedStartup}
+                      selectedStartup={selectedStartup}
                     />
                   }
                 />
-                <Route path="/launch" element={<LaunchPage projectInput={projectInput} startup={startup} />} />
+                <Route path="/launch" element={<LaunchPage projectInput={projectInput} startup={selectedStartup} />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
