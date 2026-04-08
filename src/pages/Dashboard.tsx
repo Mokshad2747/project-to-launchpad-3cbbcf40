@@ -30,7 +30,9 @@ const Dashboard = ({ analysis }: Props) => {
             <p className="text-muted-foreground">AI-powered insights on your project's potential.</p>
           </div>
           <Link to="/startup">
-            <Button className="gap-2">Generate Startup →</Button>
+            <Button size="lg" className="gap-2 bg-gradient-to-r from-primary to-[hsl(260_70%_60%)] hover:opacity-90 transition-opacity">
+              Generate Startup Idea ✨
+            </Button>
           </Link>
         </div>
         <AnalysisCard analysis={analysis} />
