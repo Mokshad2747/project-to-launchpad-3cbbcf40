@@ -45,8 +45,8 @@ const StartupGenerator = ({ projectInput, startup, onStartupGenerated }: Props) 
           </div>
           <div className="flex gap-2">
             {!startup && (
-              <Button onClick={handleGenerate} disabled={loading} className="gap-2">
-                {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Generating...</> : "Generate Startup"}
+              <Button onClick={handleGenerate} disabled={loading} size="lg" className="gap-2 bg-gradient-to-r from-primary to-[hsl(260_70%_60%)] hover:opacity-90 transition-opacity">
+                {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Generating...</> : "Generate Startup Idea ✨"}
               </Button>
             )}
             {startup && (
@@ -56,10 +56,19 @@ const StartupGenerator = ({ projectInput, startup, onStartupGenerated }: Props) 
         </div>
 
         {startup ? (
-          <StartupCard startup={startup} />
+          <>
+            <StartupCard startup={startup} />
+            <div className="mt-10 text-center">
+              <Link to="/launch">
+                <Button size="lg" className="gap-2 bg-gradient-to-r from-primary to-[hsl(260_70%_60%)] hover:opacity-90 transition-opacity">
+                  🚀 Launch Startup Page
+                </Button>
+              </Link>
+            </div>
+          </>
         ) : (
           <div className="rounded-xl border bg-card p-16 text-center shadow-elegant">
-            <p className="text-muted-foreground">Click "Generate Startup" to create your startup concept.</p>
+            <p className="text-muted-foreground">Click "Generate Startup Idea" to create your startup concept.</p>
           </div>
         )}
       </div>

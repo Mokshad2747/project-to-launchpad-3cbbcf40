@@ -21,12 +21,15 @@ export interface AnalysisResult {
 }
 
 export interface StartupResult {
-  name: string;
+  startupName: string;
   tagline: string;
+  problemSolved: string;
+  targetCustomers: string;
+  keyFeatures: string[];
   businessModel: string;
   revenueModel: string;
+  startupPotentialScore: number;
   logo: string;
-  elevatorPitch: string;
 }
 
 export interface LandingResult {
@@ -69,12 +72,21 @@ export async function generateStartup(input: ProjectInput): Promise<StartupResul
   await delay(2000);
   const baseName = input.title.split(" ")[0] || "Nova";
   return {
-    name: `${baseName}Labs`,
+    startupName: `${baseName}Labs`,
     tagline: `Turning ${input.techStack.split(",")[0]?.trim() || "ideas"} into impact — one project at a time.`,
+    problemSolved: `Students and developers building ${input.techStack.split(",")[0]?.trim() || "tech"} projects lack a clear path from academic work to market-ready products. ${baseName}Labs bridges this gap with AI-powered analysis and launch tools.`,
+    targetCustomers: "University students, bootcamp graduates, early-stage founders, and academic institutions looking to commercialize research projects.",
+    keyFeatures: [
+      "AI-powered project-to-startup analysis",
+      "Automated business model generation",
+      "One-click landing page builder",
+      "Investor pitch deck export",
+      "Market opportunity scoring",
+    ],
     businessModel: "SaaS platform with a freemium tier for students and a premium tier for institutions. Revenue generated through subscriptions, white-label licensing, and API access for enterprise partners.",
     revenueModel: "Freemium → $0/mo (basic features), Pro → $19/mo (advanced AI analysis), Enterprise → custom pricing (API + white-label).",
+    startupPotentialScore: 87,
     logo: baseName[0]?.toUpperCase() || "N",
-    elevatorPitch: `${baseName}Labs transforms student projects into launchable startups using AI-powered analysis. We identify market potential, generate business models, and create investor-ready landing pages — all in under 60 seconds.`,
   };
 }
 
@@ -82,9 +94,9 @@ export async function generateStartup(input: ProjectInput): Promise<StartupResul
 export async function generateLanding(input: ProjectInput, startup: StartupResult): Promise<LandingResult> {
   await delay(1800);
   return {
-    heroTitle: startup.name,
+    heroTitle: startup.startupName,
     heroSubtitle: startup.tagline,
-    productDescription: `${startup.name} leverages cutting-edge ${input.techStack.split(",")[0]?.trim() || "technology"} to deliver a seamless experience. Built by innovators, for innovators.`,
+    productDescription: `${startup.startupName} leverages cutting-edge ${input.techStack.split(",")[0]?.trim() || "technology"} to deliver a seamless experience. Built by innovators, for innovators.`,
     features: [
       { title: "AI-Powered Analysis", description: "Get instant insights on your project's market potential and competitive landscape.", icon: "brain" },
       { title: "One-Click Launch", description: "Generate a professional landing page for your startup in seconds.", icon: "rocket" },
