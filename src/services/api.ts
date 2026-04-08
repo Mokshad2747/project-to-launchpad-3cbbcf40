@@ -116,4 +116,3 @@ export async function generateLanding(input: ProjectInput, startup: StartupResul
     callToAction: "Start Building Your Startup Today →",
   };
 }
-}
