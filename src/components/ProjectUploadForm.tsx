@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -11,10 +10,6 @@ interface Props {
   onAnalysisComplete: (input: ProjectInput, result: AnalysisResult) => void;
 }
 
-/**
- * Form for uploading/describing a college project.
- * On submit, calls the mock analysis API and passes results up.
- */
 const ProjectUploadForm = ({ onAnalysisComplete }: Props) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -41,20 +36,21 @@ const ProjectUploadForm = ({ onAnalysisComplete }: Props) => {
     setForm((prev) => ({ ...prev, [field]: value }));
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="title">Project Title</Label>
+        <Label htmlFor="title" className="text-sm text-muted-foreground">Project Title</Label>
         <Input
           id="title"
           placeholder="e.g. SmartNotes AI"
           value={form.title}
           onChange={(e) => update("title", e.target.value)}
           required
+          className="bg-secondary/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 h-12 rounded-xl"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="description">Project Description</Label>
+        <Label htmlFor="description" className="text-sm text-muted-foreground">Project Description</Label>
         <Textarea
           id="description"
           placeholder="Describe what your project does, the problem it solves, and how it works..."
@@ -62,40 +58,43 @@ const ProjectUploadForm = ({ onAnalysisComplete }: Props) => {
           value={form.description}
           onChange={(e) => update("description", e.target.value)}
           required
+          className="bg-secondary/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 rounded-xl"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="techStack">Tech Stack</Label>
+        <Label htmlFor="techStack" className="text-sm text-muted-foreground">Tech Stack</Label>
         <Input
           id="techStack"
           placeholder="e.g. React, Node.js, PostgreSQL"
           value={form.techStack}
           onChange={(e) => update("techStack", e.target.value)}
           required
+          className="bg-secondary/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 h-12 rounded-xl"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="github">GitHub Link (optional)</Label>
+        <Label htmlFor="github" className="text-sm text-muted-foreground">GitHub Link (optional)</Label>
         <Input
           id="github"
           placeholder="https://github.com/..."
           value={form.githubLink}
           onChange={(e) => update("githubLink", e.target.value)}
+          className="bg-secondary/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 h-12 rounded-xl"
         />
       </div>
 
-      <Button type="submit" className="w-full" size="lg" disabled={loading}>
+      <button type="submit" className="btn-gradient w-full py-4 text-base disabled:opacity-50" disabled={loading}>
         {loading ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          <span className="inline-flex items-center gap-2">
+            <Loader2 className="h-4 w-4 animate-spin" />
             Analyzing...
-          </>
+          </span>
         ) : (
           "Analyze Project →"
         )}
-      </Button>
+      </button>
     </form>
   );
 };

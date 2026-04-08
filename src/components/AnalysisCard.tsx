@@ -1,42 +1,34 @@
 import type { AnalysisResult } from "@/services/api";
 import { TrendingUp, Users, Lightbulb, Target, Swords } from "lucide-react";
 
-/** Displays AI analysis results as a set of styled cards with hover animations */
 const AnalysisCard = ({ analysis }: { analysis: AnalysisResult }) => {
   const cards = [
-    {
-      icon: <Target className="h-5 w-5 text-primary" />,
-      title: "Problem Summary",
-      content: analysis.problemSummary,
-    },
-    {
-      icon: <Users className="h-5 w-5 text-primary" />,
-      title: "Target Users",
-      content: analysis.targetUsers.join(" · "),
-    },
-    {
-      icon: <TrendingUp className="h-5 w-5 text-primary" />,
-      title: "Market Opportunity",
-      content: analysis.marketOpportunity,
-    },
+    { icon: <Target className="h-5 w-5 text-primary" />, title: "Problem Summary", content: analysis.problemSummary },
+    { icon: <Users className="h-5 w-5 text-primary" />, title: "Target Users", content: analysis.targetUsers.join(" · ") },
+    { icon: <TrendingUp className="h-5 w-5 text-primary" />, title: "Market Opportunity", content: analysis.marketOpportunity },
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in">
       {/* Innovation score */}
-      <div className="rounded-xl border bg-card p-6 shadow-elegant transition-shadow hover:shadow-glow">
-        <div className="flex items-center gap-3 mb-3">
-          <Lightbulb className="h-5 w-5 text-primary" />
-          <h3 className="font-semibold">Innovation Score</h3>
+      <div className="glass-card-hover p-8">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20">
+            <Lightbulb className="h-5 w-5 text-primary" />
+          </div>
+          <h3 className="font-display font-semibold text-lg">Innovation Score</h3>
         </div>
         <div className="flex items-end gap-2">
-          <span className="text-5xl font-bold text-gradient">{analysis.innovationScore}</span>
-          <span className="text-muted-foreground text-sm mb-2">/ 100</span>
+          <span className="text-6xl font-extrabold text-gradient">{analysis.innovationScore}</span>
+          <span className="text-muted-foreground text-sm mb-3">/ 100</span>
         </div>
-        <div className="mt-3 h-2 w-full rounded-full bg-secondary">
+        <div className="mt-4 h-3 w-full rounded-full bg-secondary overflow-hidden">
           <div
-            className="h-2 rounded-full bg-primary transition-all duration-700"
-            style={{ width: `${analysis.innovationScore}%` }}
+            className="h-3 rounded-full transition-all duration-700"
+            style={{
+              width: `${analysis.innovationScore}%`,
+              background: "linear-gradient(90deg, hsl(22 100% 50%), hsl(340 80% 55%))",
+            }}
           />
         </div>
       </div>
@@ -44,25 +36,25 @@ const AnalysisCard = ({ analysis }: { analysis: AnalysisResult }) => {
       {/* Info cards */}
       <div className="grid gap-4 md:grid-cols-3">
         {cards.map((c) => (
-          <div key={c.title} className="rounded-xl border bg-card p-5 shadow-elegant transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow">
-            <div className="flex items-center gap-2 mb-2">
+          <div key={c.title} className="glass-card-hover p-6">
+            <div className="flex items-center gap-2 mb-3">
               {c.icon}
-              <h4 className="font-medium text-sm">{c.title}</h4>
+              <h4 className="font-medium text-sm text-foreground">{c.title}</h4>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">{c.content}</p>
           </div>
         ))}
       </div>
 
-      {/* Competitors card */}
-      <div className="rounded-xl border bg-card p-5 shadow-elegant transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow">
-        <div className="flex items-center gap-2 mb-3">
+      {/* Competitors */}
+      <div className="glass-card-hover p-6">
+        <div className="flex items-center gap-2 mb-4">
           <Swords className="h-5 w-5 text-primary" />
-          <h4 className="font-medium">Competitors</h4>
+          <h4 className="font-display font-medium">Competitors</h4>
         </div>
         <div className="flex flex-wrap gap-2">
           {analysis.competitors.map((c) => (
-            <span key={c} className="inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
+            <span key={c} className="inline-flex items-center rounded-full bg-primary/10 border border-primary/20 px-4 py-1.5 text-xs font-medium text-primary">
               {c}
             </span>
           ))}
@@ -71,19 +63,25 @@ const AnalysisCard = ({ analysis }: { analysis: AnalysisResult }) => {
 
       {/* Strengths & improvements */}
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-xl border bg-card p-5 shadow-elegant transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow">
-          <h4 className="font-medium mb-3">✅ Strengths</h4>
-          <ul className="space-y-1.5">
+        <div className="glass-card-hover p-6">
+          <h4 className="font-display font-medium mb-4">✅ Strengths</h4>
+          <ul className="space-y-2">
             {analysis.strengths.map((s) => (
-              <li key={s} className="text-sm text-muted-foreground">• {s}</li>
+              <li key={s} className="text-sm text-muted-foreground flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                {s}
+              </li>
             ))}
           </ul>
         </div>
-        <div className="rounded-xl border bg-card p-5 shadow-elegant transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow">
-          <h4 className="font-medium mb-3">💡 Improvements</h4>
-          <ul className="space-y-1.5">
+        <div className="glass-card-hover p-6">
+          <h4 className="font-display font-medium mb-4">💡 Improvements</h4>
+          <ul className="space-y-2">
             {analysis.improvements.map((s) => (
-              <li key={s} className="text-sm text-muted-foreground">• {s}</li>
+              <li key={s} className="text-sm text-muted-foreground flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                {s}
+              </li>
             ))}
           </ul>
         </div>
