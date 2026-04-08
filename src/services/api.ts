@@ -54,6 +54,7 @@ export async function analyzeProject(input: ProjectInput): Promise<AnalysisResul
       "Solves a real pain point",
       "Low barrier to entry for users",
     ],
+    competitors: ["EduLaunch AI", "ProjectToStartup", "IdeaForge", "LaunchPad Academy"],
     improvements: [
       "Add monetization strategy",
       "Consider mobile-first approach",
