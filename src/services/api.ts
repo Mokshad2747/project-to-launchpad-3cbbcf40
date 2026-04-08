@@ -94,9 +94,9 @@ export async function generateStartup(input: ProjectInput): Promise<StartupResul
 export async function generateLanding(input: ProjectInput, startup: StartupResult): Promise<LandingResult> {
   await delay(1800);
   return {
-    heroTitle: startup.name,
+    heroTitle: startup.startupName,
     heroSubtitle: startup.tagline,
-    productDescription: `${startup.name} leverages cutting-edge ${input.techStack.split(",")[0]?.trim() || "technology"} to deliver a seamless experience. Built by innovators, for innovators.`,
+    productDescription: `${startup.startupName} leverages cutting-edge ${input.techStack.split(",")[0]?.trim() || "technology"} to deliver a seamless experience. Built by innovators, for innovators.`,
     features: [
       { title: "AI-Powered Analysis", description: "Get instant insights on your project's market potential and competitive landscape.", icon: "brain" },
       { title: "One-Click Launch", description: "Generate a professional landing page for your startup in seconds.", icon: "rocket" },
