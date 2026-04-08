@@ -96,19 +96,24 @@ export async function generateLanding(input: ProjectInput, startup: StartupResul
   await delay(1800);
   return {
     heroTitle: startup.startupName,
-    heroSubtitle: startup.tagline,
-    productDescription: `${startup.startupName} leverages cutting-edge ${input.techStack.split(",")[0]?.trim() || "technology"} to deliver a seamless experience. Built by innovators, for innovators.`,
-    features: [
-      { title: "AI-Powered Analysis", description: "Get instant insights on your project's market potential and competitive landscape.", icon: "brain" },
-      { title: "One-Click Launch", description: "Generate a professional landing page for your startup in seconds.", icon: "rocket" },
-      { title: "Smart Business Model", description: "AI-generated revenue strategies tailored to your unique product.", icon: "chart" },
-      { title: "Investor Ready", description: "Export pitch decks and one-pagers that impress VCs and angel investors.", icon: "briefcase" },
+    heroTagline: startup.tagline,
+    productDescription: `${startup.startupName} leverages cutting-edge ${input.techStack.split(",")[0]?.trim() || "technology"} to deliver a seamless experience. We combine intelligent automation with intuitive design to solve real problems for real users. Built by innovators, for innovators.`,
+    keyBenefits: [
+      "Save hours of manual work with AI automation",
+      "Launch your idea in minutes, not months",
+      "Data-driven insights for smarter decisions",
+      "Scale effortlessly from MVP to enterprise",
     ],
-    pricing: [
-      { plan: "Starter", price: "Free", features: ["1 project analysis", "Basic startup profile", "Community access"] },
-      { plan: "Pro", price: "$19/mo", features: ["Unlimited analyses", "Custom landing pages", "Revenue modeling", "Priority support"] },
-      { plan: "Enterprise", price: "Custom", features: ["API access", "White-label", "Dedicated support", "Custom integrations"] },
+    featureHighlights: [
+      "AI-powered project analysis engine",
+      "One-click startup landing page generator",
+      "Smart business model recommendations",
+      "Investor-ready pitch deck export",
+      "Real-time market opportunity scoring",
+      "Collaborative team workspace",
     ],
-    cta: "Start Building Your Startup Today →",
+    pricingIdea: "Freemium model — free for students, $19/mo Pro plan with advanced AI features, and custom Enterprise pricing for institutions and accelerators.",
+    callToAction: "Start Building Your Startup Today →",
   };
+}
 }
