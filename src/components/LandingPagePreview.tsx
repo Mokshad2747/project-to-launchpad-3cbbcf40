@@ -93,7 +93,7 @@ const LandingPagePreview = ({ data }: { data: LandingResult }) => {
 
       {/* Final CTA */}
       <section className="rounded-3xl p-12 md:p-20 text-center mb-8 relative overflow-hidden">
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(22 100% 50%), hsl(340 80% 55%))" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(29 100% 50%), hsl(24 100% 45%))" }} />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_20%,hsl(0_0%_0%/0.3)_100%)]" />
         <div className="relative z-10">
           <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary-foreground mb-5">

@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
 @layer base {
   :root {
-    --background: 0 0% 4%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 100%;
 
     --card: 0 0% 7%;
@@ -15,16 +13,16 @@
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 22 100% 50%;
+    --primary: 29 100% 50%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 70%;
+    --secondary-foreground: 0 0% 81%;
 
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
+    --muted-foreground: 0 0% 81%;
 
-    --accent: 340 80% 55%;
+    --accent: 29 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
@@ -32,34 +30,34 @@
 
     --border: 0 0% 14%;
     --input: 0 0% 14%;
-    --ring: 22 100% 50%;
+    --ring: 29 100% 50%;
 
     --radius: 0.75rem;
 
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
+    --warning: 29 100% 50%;
     --warning-foreground: 0 0% 100%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(22 100% 50%), hsl(340 80% 55%));
-    --gradient-hero: radial-gradient(ellipse at 30% 20%, hsl(22 100% 50% / 0.08) 0%, transparent 50%),
-                     radial-gradient(ellipse at 70% 60%, hsl(340 80% 55% / 0.06) 0%, transparent 50%),
-                     hsl(0 0% 4%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 9%), hsl(0 0% 6%));
+    --gradient-primary: linear-gradient(135deg, hsl(29 100% 50%), hsl(24 100% 45%));
+    --gradient-hero: radial-gradient(ellipse at 30% 20%, hsl(29 100% 50% / 0.1) 0%, transparent 50%),
+                     radial-gradient(ellipse at 70% 60%, hsl(29 100% 50% / 0.06) 0%, transparent 50%),
+                     hsl(0 0% 0%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 9%), hsl(0 0% 5%));
 
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
     --shadow-md: 0 4px 16px -2px hsl(0 0% 0% / 0.4);
     --shadow-lg: 0 12px 40px -8px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 30px hsl(22 100% 50% / 0.15), 0 0 60px hsl(340 80% 55% / 0.08);
+    --shadow-glow: 0 0 30px hsl(29 100% 50% / 0.2), 0 0 60px hsl(29 100% 50% / 0.08);
 
-    --sidebar-background: 0 0% 5%;
+    --sidebar-background: 0 0% 3%;
     --sidebar-foreground: 0 0% 80%;
-    --sidebar-primary: 22 100% 50%;
+    --sidebar-primary: 29 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 90%;
     --sidebar-border: 0 0% 14%;
-    --sidebar-ring: 22 100% 50%;
+    --sidebar-ring: 29 100% 50%;
   }
 }
 
@@ -69,14 +67,18 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 }
 
-/* Animated gradient background */
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 @layer utilities {
@@ -99,13 +101,13 @@
   .animated-gradient-bg {
     background: linear-gradient(
       270deg,
-      hsl(22 100% 50% / 0.06),
-      hsl(340 80% 55% / 0.04),
-      hsl(22 100% 50% / 0.02),
-      hsl(340 80% 55% / 0.06)
+      hsl(29 100% 50% / 0.06),
+      hsl(29 100% 50% / 0.02),
+      hsl(0 0% 0% / 1),
+      hsl(29 100% 50% / 0.04)
     );
     background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
+    animation: gradient-shift 20s ease infinite;
   }
   .glass-card {
     @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl;
@@ -116,15 +118,18 @@
   }
   .glass-card-hover:hover {
     box-shadow: var(--shadow-glow);
-    transform: translateY(-2px);
-    border-color: hsl(22 100% 50% / 0.3);
+    transform: translateY(-4px);
+    border-color: hsl(29 100% 50% / 0.3);
   }
   .btn-gradient {
     background-image: var(--gradient-primary);
     @apply text-white font-semibold rounded-full transition-all duration-300;
   }
   .btn-gradient:hover {
-    box-shadow: 0 0 24px hsl(22 100% 50% / 0.4), 0 0 48px hsl(340 80% 55% / 0.2);
+    box-shadow: 0 0 24px hsl(29 100% 50% / 0.5), 0 0 48px hsl(29 100% 50% / 0.2);
     transform: scale(1.05);
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 }
