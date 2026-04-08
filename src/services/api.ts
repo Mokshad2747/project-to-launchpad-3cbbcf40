@@ -15,6 +15,7 @@ export interface AnalysisResult {
   targetUsers: string[];
   innovationScore: number;
   marketOpportunity: string;
+  competitors: string[];
   strengths: string[];
   improvements: string[];
 }
