@@ -34,11 +34,12 @@ export interface StartupResult {
 
 export interface LandingResult {
   heroTitle: string;
-  heroSubtitle: string;
+  heroTagline: string;
   productDescription: string;
-  features: { title: string; description: string; icon: string }[];
-  pricing: { plan: string; price: string; features: string[] }[];
-  cta: string;
+  keyBenefits: string[];
+  featureHighlights: string[];
+  pricingIdea: string;
+  callToAction: string;
 }
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
