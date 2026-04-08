@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
+        sans: ["'Helvetica Neue'", "Helvetica", "Arial", "sans-serif"],
+        display: ["'Helvetica Neue'", "Helvetica", "Arial", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -97,8 +97,8 @@ export default {
           "50%": { opacity: "0.7" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(22 100% 50% / 0.2)" },
-          "50%": { boxShadow: "0 0 40px hsl(22 100% 50% / 0.35), 0 0 60px hsl(340 80% 55% / 0.15)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(29 100% 50% / 0.2)" },
+          "50%": { boxShadow: "0 0 40px hsl(29 100% 50% / 0.4)" },
         },
       },
       animation: {
