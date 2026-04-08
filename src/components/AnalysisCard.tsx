@@ -1,7 +1,7 @@
 import type { AnalysisResult } from "@/services/api";
-import { TrendingUp, Users, Lightbulb, Target } from "lucide-react";
+import { TrendingUp, Users, Lightbulb, Target, Swords } from "lucide-react";
 
-/** Displays AI analysis results as a set of styled cards */
+/** Displays AI analysis results as a set of styled cards with hover animations */
 const AnalysisCard = ({ analysis }: { analysis: AnalysisResult }) => {
   const cards = [
     {
@@ -24,7 +24,7 @@ const AnalysisCard = ({ analysis }: { analysis: AnalysisResult }) => {
   return (
     <div className="space-y-6">
       {/* Innovation score */}
-      <div className="rounded-xl border bg-card p-6 shadow-elegant">
+      <div className="rounded-xl border bg-card p-6 shadow-elegant transition-shadow hover:shadow-glow">
         <div className="flex items-center gap-3 mb-3">
           <Lightbulb className="h-5 w-5 text-primary" />
           <h3 className="font-semibold">Innovation Score</h3>
@@ -44,7 +44,7 @@ const AnalysisCard = ({ analysis }: { analysis: AnalysisResult }) => {
       {/* Info cards */}
       <div className="grid gap-4 md:grid-cols-3">
         {cards.map((c) => (
-          <div key={c.title} className="rounded-xl border bg-card p-5 shadow-elegant">
+          <div key={c.title} className="rounded-xl border bg-card p-5 shadow-elegant transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow">
             <div className="flex items-center gap-2 mb-2">
               {c.icon}
               <h4 className="font-medium text-sm">{c.title}</h4>
@@ -54,9 +54,24 @@ const AnalysisCard = ({ analysis }: { analysis: AnalysisResult }) => {
         ))}
       </div>
 
+      {/* Competitors card */}
+      <div className="rounded-xl border bg-card p-5 shadow-elegant transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow">
+        <div className="flex items-center gap-2 mb-3">
+          <Swords className="h-5 w-5 text-primary" />
+          <h4 className="font-medium">Competitors</h4>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {analysis.competitors.map((c) => (
+            <span key={c} className="inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
+              {c}
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* Strengths & improvements */}
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-xl border bg-card p-5 shadow-elegant">
+        <div className="rounded-xl border bg-card p-5 shadow-elegant transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow">
           <h4 className="font-medium mb-3">✅ Strengths</h4>
           <ul className="space-y-1.5">
             {analysis.strengths.map((s) => (
@@ -64,7 +79,7 @@ const AnalysisCard = ({ analysis }: { analysis: AnalysisResult }) => {
             ))}
           </ul>
         </div>
-        <div className="rounded-xl border bg-card p-5 shadow-elegant">
+        <div className="rounded-xl border bg-card p-5 shadow-elegant transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow">
           <h4 className="font-medium mb-3">💡 Improvements</h4>
           <ul className="space-y-1.5">
             {analysis.improvements.map((s) => (
